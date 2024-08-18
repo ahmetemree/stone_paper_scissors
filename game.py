@@ -1,7 +1,7 @@
 import random
 
 
-def get_user_choice():
+def kullanici_secimi():
     choices = ["taş", "kağıt", "makas"]
     user_choice = input("Taş, Kağıt veya Makas seçin: ").lower()
     while user_choice not in choices:
@@ -10,15 +10,15 @@ def get_user_choice():
     return user_choice
 
 
-def get_computer_choice():
+def bilgisayar_secimi():
     choices = ["taş", "kağıt", "makas"]
     return random.choice(choices)
 
-def computer_wantsto_play():
+def bilgisayar_oynamak_istiyor_mu():
     choices=[True,False]
     return random.choice(choices)
 
-def user_wantsto_play():
+def kullanici_oynamak_istiyor_mu():
     user_choice = input("Tekrar oynamak ister misiniz? Evet veya Hayır yazın.").lower()
     if user_choice == "evet":
         return True
@@ -27,7 +27,7 @@ def user_wantsto_play():
 
 
 
-def determine_winner(user_choice, computer_choice):
+def kazanan_oyuncu(user_choice, computer_choice):
     if user_choice == computer_choice:
         return "Berabere!"
     elif (user_choice == "taş" and computer_choice == "makas") or \
@@ -38,32 +38,32 @@ def determine_winner(user_choice, computer_choice):
         return "Kaybettiniz!"
 
 
-def play_round():
-    user_choice = get_user_choice()
-    computer_choice = get_computer_choice()
+def donen_sonuc():
+    kullanici_secti = kullanici_secimi()
+    bilgisayar_secti = bilgisayar_secimi()
 
-    print(f"Sizin seçiminiz: {user_choice}")
-    print(f"Bilgisayarın seçimi: {computer_choice}")
+    print(f"Sizin seçiminiz: {kullanici_secti}")
+    print(f"Bilgisayarın seçimi: {bilgisayar_secti}")
 
-    result = determine_winner(user_choice, computer_choice)
+    result = kazanan_oyuncu(kullanici_secti, bilgisayar_secti)
     print(result)
     return result
 
 
-def play_game():
-    userchoice = True
-    compchoice = True
-    while userchoice and compchoice:
+def tas_kagit_makas_AHMETEMRE_CAKMAK():
+    kullanici_istegi = True
+    bilgisayar_istegi = True
+    while kullanici_istegi and bilgisayar_istegi:
         print("Taş, Kağıt, Makas oyununa hoş geldiniz!")
         user_score = 0
         computer_score = 0
         rounds = int(input("Kaç tur oynamak istersiniz? "))
 
         for _ in range(rounds):
-            result = play_round()
-            if result == "Kazandınız!":
+            sonuc = donen_sonuc()
+            if sonuc == "Kazandınız!":
                 user_score += 1
-            elif result == "Kaybettiniz!":
+            elif sonuc == "Kaybettiniz!":
                 computer_score += 1
 
             print(f"Skor: Siz {user_score} - {computer_score} Bilgisayar\n")
@@ -75,14 +75,14 @@ def play_game():
         else:
             print("Oyun berabere bitti.")
 
-        userchoice = user_wantsto_play()
-        if userchoice==False:
+        kullanici_istegi = kullanici_oynamak_istiyor_mu()
+        if kullanici_istegi==False:
             print("İyi günler :)")
-        compchoice = computer_wantsto_play()
-        if compchoice==False :
+        bilgisayar_istegi = bilgisayar_oynamak_istiyor_mu()
+        if bilgisayar_istegi==False :
             print("Bilgisayar oynamak istemiyor")
             exit(1)
 
 
 if __name__ == "__main__":
-    play_game()
+    tas_kagit_makas_AHMETEMRE_CAKMAK()
